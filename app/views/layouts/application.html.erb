@@ -14,7 +14,8 @@
 	    <%= link_to "Logout", @application_session, :method => :delete %>
 	<% else %>
 	    <%= link_to "Login", new_session_path %> -
-	    <%= link_to "Register", new_person_path %>
+	    
+	   
 	<% end %>
 	
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>

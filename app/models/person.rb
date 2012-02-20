@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
     :message => "must be 4 to 16 characters",
     :unless => :password_is_not_being_updated?
     
-  validates_format_of :email,
+  validates_format_of :email_address,
                       :with => /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/i,
                       :message => "must be a valid address"    
  

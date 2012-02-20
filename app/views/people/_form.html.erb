@@ -9,6 +9,9 @@
   <label for="person_password_confirmation">Password Confirmation:</label><br />
   <%= f.password_field :password_confirmation %><br />
   
+  <label for="person_email_address">Email address:</label><br />
+  <%= f.text_field :email_address %><br />  
+  
   <%= submit_tag "Submit" %>
 
 <% end %>

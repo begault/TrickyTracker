@@ -1,10 +1,17 @@
 Tracker::Application.routes.draw do
   
-  root :to => 'people#index'
+  root :to => "application#home"
   
+  get 'home' => 'application#index'
+  
+  get 'people/help' => 'people#help'
+  post 'people/recover' => 'people#recover'
   resources :people
 
-  resources :sessions, :member => {:recovery => :get}
+    #:collection => {:help => :get, :recover => :post}
+
+  resources :sessions, 
+    :member => {:recovery => :get}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

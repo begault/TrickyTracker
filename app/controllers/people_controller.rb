@@ -1,6 +1,10 @@
 class PeopleController < ApplicationController
+  
+  load 'crypto.rb'
+  include Crypto
+  
   before_filter :ensure_login, :only => [:edit, :update, :destroy]
-  before_filter :ensure_logout, :only => [:new, :create]
+  before_filter :ensure_logout, :only => [:new, :create, :help, :recover]
  
   def index
     @people = Person.find(:all)
@@ -48,4 +52,25 @@ class PeopleController < ApplicationController
     flash[:notice] = "You are now unregistered"
     redirect_to(root_url)
   end
+  
+  def recover
+    person = Person.find_by_name(params[:name])
+    if person
+      puts person
+      Mailer.deliver_recovery(:key => Crypto.encrypt("#{person.id}:#{person.salt}"),
+                              :email => person.email_address,
+                              :to_user => person.email_address,
+                              :domain => request.env['HTTP_HOST'])
+      flash[:notice] = "Please check your email"
+      redirect_to(root_url)
+    else
+      flash[:notice] = "Your account could not be found"
+      redirect_to(:controller => :person, :action => :help) 
+    end
+  end  
+
+  def help
+    
+  end
+
 end

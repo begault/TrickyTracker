@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
+  def home
+      
+  end
+  
   def ensure_login
     unless @user
       flash[:notice] = "Please login to continue"
