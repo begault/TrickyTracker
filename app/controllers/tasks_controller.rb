@@ -27,6 +27,15 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    
+    if params[:id].nil?
+      @projects = Project.all
+    else
+      @project = Project.find(params[:id])
+    end
+
+    @priorities = Priority.all
+    @stopovers = Stopover.all
     @task = Task.new
 
     respond_to do |format|
@@ -44,6 +53,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
+    @task.author = current_user
 
     respond_to do |format|
       if @task.save
