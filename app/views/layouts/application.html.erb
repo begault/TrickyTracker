@@ -11,24 +11,18 @@
 	
 	<% if @user %>
 		<%= link_to "Edit Account", edit_person_path('account') %> -
-	    <%= link_to "Logout", @application_session, :method => :delete %>
-	<% else %>
-	    <%= link_to "Login", new_session_path %> -
+		<%= link_to "Projects", projects_path %> -
+	    <%= link_to "Logout", @application_session, :method => :delete %> 
 	    
-	   
+	    <%=h " - User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=h "Path: #{@application_session.path} " %>
+	<% else %>
+	    <%= link_to "Login", new_session_path %>	   
 	<% end %>
 	
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>
 	  
 	  <hr />
-	
-	  <h1>
-	  <% if @user %>
-	    <%= "User: #{@user.name}" %><br />
-	    <%= "IP Address: #{@application_session.ip_address}" %><br />
-	    <%= "Path: #{@application_session.path}" %>
-	  <% end %>
-	  </h1>	
 	  
 	<%= yield %>
 

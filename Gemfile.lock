@@ -87,6 +87,6 @@ PLATFORMS
 
 DEPENDENCIES
   dynamic_form
-  rails
+  rails (= 3.2.1)
   rdoc
   sqlite3-ruby

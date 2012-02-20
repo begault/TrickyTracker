@@ -1,0 +1,27 @@
+<h1>Listing projects_people</h1>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Person</th>
+    <th>Job description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects_people.each do |projects_person| %>
+  <tr>
+    <td><%= projects_person.project_id %></td>
+    <td><%= projects_person.person_id %></td>
+    <td><%= projects_person.job_description %></td>
+    <td><%= link_to 'Show', projects_person %></td>
+    <td><%= link_to 'Edit', edit_projects_person_path(projects_person) %></td>
+    <td><%= link_to 'Destroy', projects_person, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Projects person', new_projects_person_path %>

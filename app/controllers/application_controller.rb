@@ -23,6 +23,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def current_user
+    if session[:id]
+      if @application_session = Session.find_by_id(session[:id])   
+        return @application_session.person.id
+      end
+    end     
+    return 0
+  end
+  
   private
   
   def maintain_session_and_user

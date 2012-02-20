@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @task.project_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<p>
+  <b>Tmp achievement date:</b>
+  <%= @task.tmp_achievement_date %>
+</p>
+
+<p>
+  <b>Effective achievement date:</b>
+  <%= @task.effective_achievement_date %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @task.priority_id %>
+</p>
+
+<p>
+  <b>Stopover:</b>
+  <%= @task.stopover_id %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @task.author %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

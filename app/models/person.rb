@@ -6,6 +6,11 @@ class Person < ActiveRecord::Base
   ENCRYPT = Digest::SHA256
  
   has_many :sessions, :dependent => :destroy
+  
+  has_many :owned_projects
+  has_many :owned_tasks
+  has_and_belongs_to_many :projects
+  has_and_belongs_to_many :tasks
  
   validates_uniqueness_of :name, :message => "is already in use by another person"
  

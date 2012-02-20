@@ -1,5 +1,17 @@
 Tracker::Application.routes.draw do
   
+  resources :tasks_people
+
+  resources :projects_people
+
+  resources :stopovers
+
+  resources :priorities
+
+  resources :tasks
+
+  resources :projects
+
   root :to => "application#home"
   
   get 'home' => 'application#index'
