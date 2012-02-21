@@ -20,7 +20,7 @@
 	    <%=h " - User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=h "Path: #{@application_session.path} " %>
 	<% else %>
-	    <%= link_to "Login", new_session_path %>	   
+	    <%= link_to "Login", new_session_path %>	 
 	<% end %>
 	
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>

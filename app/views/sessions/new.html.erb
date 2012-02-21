@@ -1,9 +1,9 @@
 <%= error_messages_for :session %>
-
+ toto 
 <fieldset>
   <legend>Login</legend>
 
-  <% form_for @session do |f| %>
+  <%= form_for @session do |f| %>
   
     <label for="session_name">Name</label><br />
     <%= f.text_field :name %><br />

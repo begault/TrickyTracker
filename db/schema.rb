@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20120220152206) do
     t.string   "salt"
     t.string   "encrypted_password"
     t.string   "email_address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "priorities", :force => true do |t|
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20120220152206) do
     t.integer  "person_id"
     t.string   "ip_address"
     t.string   "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "stopovers", :force => true do |t|
