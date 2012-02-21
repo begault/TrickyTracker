@@ -14,7 +14,8 @@
 		<%= link_to "Projects", projects_path %> -
 		<%= link_to "Priorities", priorities_path %> - 
 		<%= link_to "Stopovers", stopovers_path %> -
-		
+		<%= link_to"Roles", new_role_path %> - 
+		<%= link_to "People", people_path %> - 
 	    <%= link_to "Logout", @application_session, :method => :delete %> 
 	    
 	    <%=h " - User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>

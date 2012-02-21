@@ -32,6 +32,11 @@ class ApplicationController < ActionController::Base
     return 0
   end
   
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to root_url
+  end  
+  
   private
   
   def maintain_session_and_user

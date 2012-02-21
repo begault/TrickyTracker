@@ -123,6 +123,8 @@
   
     <li><a href="./Tracker/Application.html">Tracker::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -136,6 +138,8 @@
     <li><a href="./CreateProjects.html">CreateProjects</a>
   
     <li><a href="./CreateProjectsPeople.html">CreateProjectsPeople</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateSessions.html">CreateSessions</a>
   
@@ -154,6 +158,8 @@
     <li><a href="./PeopleController.html">PeopleController</a>
   
     <li><a href="./PeopleControllerTest.html">PeopleControllerTest</a>
+  
+    <li><a href="./PeopleHaveAndBelongToManyRoles.html">PeopleHaveAndBelongToManyRoles</a>
   
     <li><a href="./PeopleHelper.html">PeopleHelper</a>
   
@@ -198,6 +204,8 @@
     <li><a href="./ProjectsPerson.html">ProjectsPerson</a>
   
     <li><a href="./ProjectsPersonTest.html">ProjectsPersonTest</a>
+  
+    <li><a href="./Role.html">Role</a>
   
     <li><a href="./Session.html">Session</a>
   
@@ -306,7 +314,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:project</span>])
   <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">manager</span> = <span class="ruby-identifier">current_user</span>
@@ -347,7 +355,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">destroy</span>
@@ -383,7 +391,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -448,7 +456,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">new</span>
 
@@ -486,7 +494,8 @@
             <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
+  <span class="ruby-ivar">@tasks</span> = <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">tasks</span>
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@project</span> }
@@ -518,7 +527,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 62</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

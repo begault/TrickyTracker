@@ -1,6 +1,11 @@
 <% for person in @people %>
 
-  <%= link_to person.name, person %>
+  <%= link_to person.name, person %> <br />
 
 <% end %>
+
+<br />
+<br />
+
+<%= link_to 'New Person', new_person_path %>
 

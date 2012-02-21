@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   ENCRYPT = Digest::SHA256
  
   has_many :sessions, :dependent => :destroy
-  
+  belongs_to :role
   has_many :owned_projects
   has_many :owned_tasks
   has_and_belongs_to_many :projects
@@ -43,6 +43,15 @@ class Person < ActiveRecord::Base
       self.salt = [Array.new(9){rand(256).chr}.join].pack('m').chomp
       self.encrypted_password = ENCRYPT.hexdigest(password + self.salt)
     end
+  end
+  
+  #def role?(role) 
+   
+    #return !!self.roles.find_by_name(role.to_s.camelize)
+  #end
+  
+  def role
+    return Role.find(:first, :conditions => {:id => (RolesPerson.find(:first, :conditions => {:person_id => self.id})).role_id}).name
   end
  
   private

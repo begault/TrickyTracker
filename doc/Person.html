@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-password-3D">#password=</a>
     
+    <li><a href="#method-i-role-3F">#role?</a>
+    
   </ul>
 </nav>
 
@@ -113,6 +115,8 @@
   
     <li><a href="./Tracker/Application.html">Tracker::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -126,6 +130,8 @@
     <li><a href="./CreateProjects.html">CreateProjects</a>
   
     <li><a href="./CreateProjectsPeople.html">CreateProjectsPeople</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateSessions.html">CreateSessions</a>
   
@@ -144,6 +150,8 @@
     <li><a href="./PeopleController.html">PeopleController</a>
   
     <li><a href="./PeopleControllerTest.html">PeopleControllerTest</a>
+  
+    <li><a href="./PeopleHaveAndBelongToManyRoles.html">PeopleHaveAndBelongToManyRoles</a>
   
     <li><a href="./PeopleHelper.html">PeopleHelper</a>
   
@@ -188,6 +196,8 @@
     <li><a href="./ProjectsPerson.html">ProjectsPerson</a>
   
     <li><a href="./ProjectsPersonTest.html">ProjectsPersonTest</a>
+  
+    <li><a href="./Role.html">Role</a>
   
     <li><a href="./Session.html">Session</a>
   
@@ -384,6 +394,36 @@
 
         
       </div><!-- password-3D-method -->
+
+    
+      <div id="method-i-role-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">role?</span><span
+            class="method-args">(role)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="role-3F-source">
+            <pre><span class="ruby-comment"># File app/models/person.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">role?</span>(<span class="ruby-identifier">role</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">role</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- role-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- role-3F-method -->
 
     
     </section><!-- public-instance-method-details -->

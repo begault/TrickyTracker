@@ -3,8 +3,8 @@ class PeopleController < ApplicationController
   load 'crypto.rb'
   include Crypto
   
-  before_filter :ensure_login, :only => [:edit, :update, :destroy]
-  before_filter :ensure_logout, :only => [:new, :create, :help, :recover]
+  before_filter :ensure_login, :only => [:edit, :update, :destroy, :new, :create]
+  before_filter :ensure_logout, :only => [:help, :recover]
  
   def index
     @people = Person.find(:all)
@@ -16,24 +16,31 @@ class PeopleController < ApplicationController
  
   def new
     @person = Person.new
+    @roles = Role.all
   end
  
   def create
     @person = Person.new(params[:person])
-    if @person.save
-      @session = @person.sessions.create
-      #session[:id] = @session.id
-      flash[:notice] = "#{@person.name} is now registered"
-      #redirect_to(root_url)
-      render(:action => 'new')
+    @role_person = RolesPerson.new(params[:roles_people])
+    
+    @roles = Role.all
+    if @person.save 
+        @role_person.person_id = @person.id
+        @role_person.save
+        @session = @person.sessions.create
+        #session[:id] = @session.id
+        flash[:notice] = "#{@person.name} is now registered"
+        #redirect_to(root_url)
+        render(:action => 'new')
     else
-      flash[:error] = "#{@person.name} has not been created ... "
+      flash[:error] = "Role has not been linked ... "
       render(:action => 'new')
     end
   end
  
   def edit
     @person = Person.find(@user)
+    @roles = Role.all
   end
  
   def update

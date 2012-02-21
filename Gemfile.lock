@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.0)
     builder (3.0.0)
+    cancan (1.6.7)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     hike (1.2.1)
@@ -89,6 +90,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancan
   dynamic_form
   jquery-rails (>= 1.0.12)
   rails (= 3.2.1)
