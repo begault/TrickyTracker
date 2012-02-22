@@ -2,7 +2,7 @@ Tracker::Application.routes.draw do
   
   resources :roles
   
-  resources :tasks_people
+  resources :people_tasks
 
   resources :projects_people
 
@@ -12,6 +12,9 @@ Tracker::Application.routes.draw do
 
   resources :tasks
 
+  #post 'add_team_member' => 'projects#add_team_member'
+  post 'projects/:id/add' => 'projects#add_team_member'
+  post 'projects/:id/remove' => 'projects#remove_team_member'
   resources :projects
 
   root :to => "application#home"

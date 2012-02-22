@@ -23,5 +23,11 @@
 <%= link_to 'New Task', new_task_path(:id => @project.id) %>
 <br />
 <br />
+
+<div id="team_members">
+<%= render :partial => "team_list"%>
+</div>
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

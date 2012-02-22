@@ -54,6 +54,15 @@ class Person < ActiveRecord::Base
     return Role.find(:first, :conditions => {:id => (RolesPerson.find(:first, :conditions => {:person_id => self.id})).role_id}).name
   end
  
+ def self.team_members(project_id)
+  # find_by_sql()
+   return Person.find(:all, :conditions => "id in(select person_id from projects_people where project_id = #{project_id})")
+ end
+ 
+ def self.not_in_the_team(project_id)
+   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from projects_people pp where pp.person_id = p.id and pp.project_id = #{project_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+ end
+ 
   private
  
   def scrub_name

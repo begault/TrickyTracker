@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+    class TasksController < ApplicationController
   
   before_filter :ensure_login
   
@@ -45,13 +45,17 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
-  def edit
+  def edit   
     @task = Task.find(params[:id])
+    @project = Project.find(@task.project_id)
+    @priorities = Priority.all
+    @stopovers = Stopover.all
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
+    puts params
     @task = Task.new(params[:task])
     @task.author = current_user
 
@@ -86,10 +90,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
+    @project = Project.find(@task.project_id)
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to project_url(@project) }
       format.json { head :no_content }
     end
   end

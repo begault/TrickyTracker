@@ -1,7 +1,4 @@
 class ProjectsPeopleController < ApplicationController
-  
-  before_filter :ensure_login
-  
   # GET /projects_people
   # GET /projects_people.json
   def index

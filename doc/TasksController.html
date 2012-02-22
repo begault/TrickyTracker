@@ -207,6 +207,10 @@
   
     <li><a href="./Role.html">Role</a>
   
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesPerson.html">RolesPerson</a>
+  
     <li><a href="./Session.html">Session</a>
   
     <li><a href="./SessionTest.html">SessionTest</a>
@@ -316,6 +320,7 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/tasks_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">params</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:task</span>])
   <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">author</span> = <span class="ruby-identifier">current_user</span>
 
@@ -355,7 +360,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/tasks_controller.rb, line 87</span>
+            <pre><span class="ruby-comment"># File app/controllers/tasks_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">destroy</span>
@@ -535,7 +540,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/tasks_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/tasks_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

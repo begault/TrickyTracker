@@ -19,7 +19,7 @@
 	    <%= link_to "Logout", @application_session, :method => :delete %> 
 	    
 	    <%=h " - User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
-	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=h "Path: #{@application_session.path} " %>
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=h "Path: " %> <%= link_to @path%>
 	<% else %>
 	    <%= link_to "Login", new_session_path %>	 
 	<% end %>

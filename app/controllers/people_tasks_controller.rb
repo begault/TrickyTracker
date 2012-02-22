@@ -1,17 +1,20 @@
-class TasksPeopleController < ApplicationController
-  # GET /tasks_people
-  # GET /tasks_people.json
+class PeopleTasksController < ApplicationController
+  
+  before_filter :ensure_login
+  
+  # GET /people_tasks
+  # GET /people_tasks.json
   def index
-    @tasks_people = TasksPerson.all
+    @people_tasks = TasksPerson.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tasks_people }
+      format.json { render json: @people_tasks }
     end
   end
 
-  # GET /tasks_people/1
-  # GET /tasks_people/1.json
+  # GET /people_tasks/1
+  # GET /people_tasks/1.json
   def show
     @tasks_person = TasksPerson.find(params[:id])
 
@@ -21,10 +24,10 @@ class TasksPeopleController < ApplicationController
     end
   end
 
-  # GET /tasks_people/new
-  # GET /tasks_people/new.json
+  # GET /people_tasks/new
+  # GET /people_tasks/new.json
   def new
-    @tasks_person = TasksPerson.new
+    @tasks_person = TasksPerson.new 
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,13 +35,13 @@ class TasksPeopleController < ApplicationController
     end
   end
 
-  # GET /tasks_people/1/edit
+  # GET /people_tasks/1/edit
   def edit
     @tasks_person = TasksPerson.find(params[:id])
   end
 
-  # POST /tasks_people
-  # POST /tasks_people.json
+  # POST /people_tasks
+  # POST /people_tasks.json
   def create
     @tasks_person = TasksPerson.new(params[:tasks_person])
 
@@ -53,8 +56,8 @@ class TasksPeopleController < ApplicationController
     end
   end
 
-  # PUT /tasks_people/1
-  # PUT /tasks_people/1.json
+  # PUT /people_tasks/1
+  # PUT /people_tasks/1.json
   def update
     @tasks_person = TasksPerson.find(params[:id])
 
@@ -69,14 +72,14 @@ class TasksPeopleController < ApplicationController
     end
   end
 
-  # DELETE /tasks_people/1
-  # DELETE /tasks_people/1.json
+  # DELETE /people_tasks/1
+  # DELETE /people_tasks/1.json
   def destroy
     @tasks_person = TasksPerson.find(params[:id])
     @tasks_person.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_people_url }
+      format.html { redirect_to people_tasks_url }
       format.json { head :no_content }
     end
   end

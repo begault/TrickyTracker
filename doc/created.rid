@@ -1,12 +1,13 @@
-Tue, 21 Feb 2012 12:48:41 +0100
-./app/controllers/application_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
-./app/controllers/people_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
+Wed, 22 Feb 2012 13:10:54 +0100
+./app/controllers/application_controller.rb	Tue, 21 Feb 2012 13:36:55 +0100
+./app/controllers/people_controller.rb	Tue, 21 Feb 2012 18:31:51 +0100
 ./app/controllers/priorities_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
-./app/controllers/projects_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
+./app/controllers/projects_controller.rb	Wed, 22 Feb 2012 12:21:16 +0100
 ./app/controllers/projects_people_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
+./app/controllers/roles_controller.rb	Tue, 21 Feb 2012 14:27:10 +0100
 ./app/controllers/sessions_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/controllers/stopovers_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
-./app/controllers/tasks_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
+./app/controllers/tasks_controller.rb	Wed, 22 Feb 2012 10:25:29 +0100
 ./app/controllers/tasks_people_controller.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/helpers/application_helper.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./app/helpers/people_helper.rb	Tue, 21 Feb 2012 12:00:44 +0100
@@ -18,12 +19,13 @@ Tue, 21 Feb 2012 12:48:41 +0100
 ./app/helpers/tasks_helper.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/helpers/tasks_people_helper.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/mailers/mailer.rb	Tue, 21 Feb 2012 12:05:06 +0100
-./app/models/ability.rb	Tue, 21 Feb 2012 12:47:39 +0100
-./app/models/person.rb	Tue, 21 Feb 2012 12:48:05 +0100
+./app/models/ability.rb	Tue, 21 Feb 2012 13:42:45 +0100
+./app/models/person.rb	Tue, 21 Feb 2012 18:33:15 +0100
 ./app/models/priority.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/models/project.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/models/projects_person.rb	Tue, 21 Feb 2012 12:05:06 +0100
-./app/models/role.rb	Tue, 21 Feb 2012 12:46:23 +0100
+./app/models/role.rb	Tue, 21 Feb 2012 14:59:10 +0100
+./app/models/roles_person.rb	Tue, 21 Feb 2012 17:55:32 +0100
 ./app/models/session.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./app/models/stopover.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./app/models/task.rb	Tue, 21 Feb 2012 12:05:06 +0100
@@ -39,7 +41,7 @@ Tue, 21 Feb 2012 12:48:41 +0100
 ./config/initializers/mime_types.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./config/initializers/secret_token.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./config/initializers/session_store.rb	Tue, 21 Feb 2012 12:00:44 +0100
-./config/routes.rb	Tue, 21 Feb 2012 12:05:06 +0100
+./config/routes.rb	Wed, 22 Feb 2012 12:19:06 +0100
 ./db/migrate/20120220102228_create_sessions.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./db/migrate/20120220102246_create_people.rb	Tue, 21 Feb 2012 12:00:44 +0100
 ./db/migrate/20120220141510_create_projects.rb	Tue, 21 Feb 2012 12:05:06 +0100
@@ -49,9 +51,9 @@ Tue, 21 Feb 2012 12:48:41 +0100
 ./db/migrate/20120220152028_create_projects_people.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./db/migrate/20120220152206_create_tasks_people.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./db/migrate/20120221114445_create_roles.rb	Tue, 21 Feb 2012 12:45:02 +0100
-./db/migrate/20120221114527_people_have_and_belong_to_many_roles.rb	Tue, 21 Feb 2012 12:45:38 +0100
-./db/schema.rb	Tue, 21 Feb 2012 12:45:54 +0100
-./db/seeds.rb	Tue, 21 Feb 2012 12:00:44 +0100
+./db/migrate/20120221141208_people_have_and_belong_to_many_roles.rb	Tue, 21 Feb 2012 15:14:33 +0100
+./db/schema.rb	Tue, 21 Feb 2012 15:23:49 +0100
+./db/seeds.rb	Tue, 21 Feb 2012 15:25:45 +0100
 ./Gemfile	Tue, 21 Feb 2012 12:46:49 +0100
 ./lib/crypto.rb	Tue, 21 Feb 2012 12:05:06 +0100
 ./public/robots.txt	Tue, 21 Feb 2012 12:00:44 +0100

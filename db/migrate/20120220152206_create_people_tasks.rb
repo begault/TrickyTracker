@@ -1,6 +1,6 @@
-class CreateTasksPeople < ActiveRecord::Migration
+class CreatePeopleTasks < ActiveRecord::Migration
   def change
-    create_table :tasks_people do |t|
+    create_table :people_tasks do |t|
       t.integer :task_id
       t.integer :person_id
 

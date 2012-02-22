@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def index
     @roles = Role.all
     @projects = Project.all
+    @path = projects_path
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,8 +18,20 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    
+    puts "\n show \n "
+    
     @project = Project.find(params[:id])
+    puts @project.to_json
     @tasks = @project.tasks
+    @team_members = Person.team_members(@project.id)
+    puts "\n between"
+   # @i = ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")
+   # puts @in.to_json
+    @users = Person.not_in_the_team(@project.id)#.find_by_sql()#.all(:conditions => [" id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")]) 
+    @project_person = ProjectsPerson.new
+    puts @team_members.to_json
+    puts @users.to_json
     
     respond_to do |format|
       format.html # show.html.erb
@@ -86,4 +99,42 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def add_team_member
+    puts "\n add team member \n "
+    puts params
+    @project = Project.find(:first, :conditions => "id = #{params[:id]}")
+    puts @project.to_json
+    @project_person = ProjectsPerson.new(:project_id => @project.id, :person_id => params[:person_id])
+    puts @project_person.to_json
+    @team_members = Person.all(:conditions => ["id in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])   
+    
+    respond_to do |format| 
+      if @project_person.save
+        format.html { redirect_to(project_url(@project.id)) }
+        format.js
+        format.xml  { render :xml => @project_person, :status => :created, :location => @project_person }
+      else
+        format.html { render :action => "show", :id => @project.id } 
+        format.xml { render :xml => @project_person.errors, :status => :unprocessable_entity }
+      end 
+    end
+  end
+  
+  def remove_team_member
+    puts "remove"
+    @project = Project.find(:first, :conditions => "id = #{params[:id]}")
+    @project_person = ProjectsPerson.find(:first, :conditions => ["project_id = #{@project.id} and person_id = #{params[:person_id]}"])
+    @project_person.destroy
+    @team_members = Person.all(:conditions => ["id in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])   
+    
+    respond_to do |format| 
+        format.html { redirect_to(project_url(@project.id)) }
+        format.js
+        format.xml  { render :xml => @project_person, :status => "deleted", :location => @project }
+    end
+  end  
+  
 end

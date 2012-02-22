@@ -74,7 +74,7 @@
     
     <li><a href="#method-i-password-3D">#password=</a>
     
-    <li><a href="#method-i-role-3F">#role?</a>
+    <li><a href="#method-i-role">#role</a>
     
   </ul>
 </nav>
@@ -198,6 +198,10 @@
     <li><a href="./ProjectsPersonTest.html">ProjectsPersonTest</a>
   
     <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesPerson.html">RolesPerson</a>
   
     <li><a href="./Session.html">Session</a>
   
@@ -396,34 +400,34 @@
       </div><!-- password-3D-method -->
 
     
-      <div id="method-i-role-3F" class="method-detail ">
+      <div id="method-i-role" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">role?</span><span
-            class="method-args">(role)</span>
+          <span class="method-name">role</span><span
+            class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <p>return !!self.roles.find_by_name(role.to_s.camelize) end</p>
           
 
           
-          <div class="method-source-code" id="role-3F-source">
-            <pre><span class="ruby-comment"># File app/models/person.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">role?</span>(<span class="ruby-identifier">role</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">role</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>)
+          <div class="method-source-code" id="role-source">
+            <pre><span class="ruby-comment"># File app/models/person.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">role</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Role</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:first</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-constant">RolesPerson</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:first</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:person_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>})).<span class="ruby-identifier">role_id</span>}).<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- role-3F-source -->
+          </div><!-- role-source -->
           
         </div>
 
         
 
         
-      </div><!-- role-3F-method -->
+      </div><!-- role-method -->
 
     
     </section><!-- public-instance-method-details -->

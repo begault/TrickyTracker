@@ -207,6 +207,10 @@
   
     <li><a href="./Role.html">Role</a>
   
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesPerson.html">RolesPerson</a>
+  
     <li><a href="./Session.html">Session</a>
   
     <li><a href="./SessionTest.html">SessionTest</a>
@@ -316,7 +320,18 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/models/ability.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">can</span> <span class="ruby-value">:read</span>, <span class="ruby-value">:all</span>
+  <span class="ruby-identifier">usr</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment">#guest user</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role?</span> <span class="ruby-value">:super_admin</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-value">:all</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role?</span> <span class="ruby-value">:project_team</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, [<span class="ruby-constant">Project</span>, <span class="ruby-constant">Task</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:read</span>, <span class="ruby-value">:all</span>
+  <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Asset</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">asset</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">asset</span>.<span class="ruby-identifier">assetable</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:owner</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>
+    <span class="ruby-keyword">end</span>    
   <span class="ruby-comment"># Define abilities for the passed in user here. For example:</span>
   <span class="ruby-comment">#</span>
   <span class="ruby-comment">#   user ||= User.new # guest user (not logged in)</span>
