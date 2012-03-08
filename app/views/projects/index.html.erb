@@ -6,11 +6,11 @@
 	
 </div>
 
-<table>
+<table class="list_layout">
   <tr>
     <th>Name</th>
     <th>Manager</th>
-    <th>Description</th>
+    <th>Starting</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,8 +19,8 @@
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.name %></td>
-    <td><%= project.manager %></td>
-    <td><%= project.description %></td>
+    <td><%= project.project_manager.name %></td>
+    <td><%= project.created_at.to_date %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>

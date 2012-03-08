@@ -10,7 +10,8 @@ class Person < ActiveRecord::Base
   has_many :owned_projects
   has_many :owned_tasks
   has_and_belongs_to_many :projects
-  has_and_belongs_to_many :tasks
+  has_many :people_tasks, :dependent => :destroy
+  has_many :tasks, :through => :people_tasks, :order => 'name'      
  
   validates_uniqueness_of :name, :message => "is already in use by another person"
  
@@ -56,12 +57,21 @@ class Person < ActiveRecord::Base
  
  def self.team_members(project_id)
   # find_by_sql()
-   return Person.find(:all, :conditions => "id in(select person_id from projects_people where project_id = #{project_id})")
+   return Person.find(:all, :conditions => "id in(select person_id from people_projects where project_id = #{project_id})")
  end
  
  def self.not_in_the_team(project_id)
-   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from projects_people pp where pp.person_id = p.id and pp.project_id = #{project_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from people_projects pp where pp.person_id = p.id and pp.project_id = #{project_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
  end
+ 
+ def self.task_assignees(task_id)
+  # find_by_sql()
+   return Person.find(:all, :conditions => "id in(select person_id from people_tasks where task_id = #{task_id})")
+ end
+ 
+ def self.not_assignees(task_id)
+   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from people_tasks pp where pp.person_id = p.id and pp.task_id = #{task_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+ end 
  
   private
  

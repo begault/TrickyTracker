@@ -10,6 +10,9 @@ Tracker::Application.routes.draw do
 
   resources :priorities
 
+  post 'tasks/:id/add' => 'tasks#add_task_assignee'
+  post 'tasks/:id/remove' => 'tasks#remove_task_assignee'  
+  get 'tasks/your_tasks' => 'tasks#your_tasks'
   resources :tasks
 
   #post 'add_team_member' => 'projects#add_team_member'

@@ -6,20 +6,24 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
+<body class="toto">
 	<%= link_to "Home", root_url %> - 
 	
 	<% if @user %>
-		<%= link_to "Edit Account", edit_person_path('account') %> -
-		<%= link_to "Projects", projects_path %> -
-		<%= link_to "Priorities", priorities_path %> - 
-		<%= link_to "Stopovers", stopovers_path %> -
-		<%= link_to"Roles", new_role_path %> - 
-		<%= link_to "People", people_path %> - 
-	    <%= link_to "Logout", @application_session, :method => :delete %> 
+		<%=h link_to "Edit Account", edit_person_path('account') %> -
+		<%=h link_to "Projects", projects_path %> -
+		<%=h link_to "Priorities", priorities_path %> - 
+		<%=h link_to "Stopovers", stopovers_path %> -
+		<%=h link_to"Roles", new_role_path %> - 
+		<%=h link_to "People", people_path %> - 
+		<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %> - 
+	    <%=h link_to "Logout", @application_session, :method => :delete %> - 
 	    
-	    <%=h " - User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
-	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=h "Path: " %> <%= link_to @path%>
+	    <%=h " User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	    
+	    <%= render :partial => "layouts/path"%>
+	    
 	<% else %>
 	    <%= link_to "Login", new_session_path %>	 
 	<% end %>
@@ -27,6 +31,8 @@
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>
 	  
 	  <hr />
+	  
+	  Tasks : <%=h @user %>
 	  
 	<%= yield %>
 

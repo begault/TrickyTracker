@@ -1,4 +1,4 @@
-    class TasksController < ApplicationController
+class TasksController < ApplicationController
   
   before_filter :ensure_login
   
@@ -6,6 +6,7 @@
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @root = "tasks"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,11 +14,26 @@
     end
   end
 
+  def your_tasks
+    @tasks = Task.all
+    
+   # @tasks = Task.people.where(:id => params[:user_id])
+    @root = "tasks"
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @tasks }
+    end    
+  end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
-
+    @team_members = Person.task_assignees(@task.id)
+    @users = Person.not_assignees(@task.id)
+    puts "\n people : #{@users.to_json}" 
+ 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }
@@ -98,4 +114,39 @@
       format.json { head :no_content }
     end
   end
+  
+  def add_task_assignee
+    @task = Task.find(:first, :conditions => "id = #{params[:id]}")
+    @people_task= PeopleTask.new(:task_id => @task.id, :person_id => params[:person_id])
+    puts @people_task.to_json
+    @team_members = Person.all(:conditions => ["id in (?)", PeopleTask.find(:all, :conditions => "task_id = #{@task.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", PeopleTask.find(:all, :conditions => "task_id = #{@task.id}")])   
+    
+    respond_to do |format| 
+      if @people_task.save
+        format.html { redirect_to(task_url(@task.id)) }
+        format.js
+        format.xml  { render :xml => @people_task, :status => :created, :location => @people_task }
+      else
+        format.html { render :action => "show", :id => @task.id } 
+        format.xml { render :xml => @people_task.errors, :status => :unprocessable_entity }
+      end 
+    end
+  end
+  
+  def remove_task_assignee
+    puts "remove"
+    @task = Task.find(:first, :conditions => "id = #{params[:id]}")
+    @people_task = PeopleTask.find(:first, :conditions => ["task_id = #{@task.id} and person_id = #{params[:person_id]}"])
+    @people_task.destroy
+    @team_members = Person.all(:conditions => ["id in (?)", PeopleTask.find(:all, :conditions => "task_id = #{@task.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", PeopleTask.find(:all, :conditions => "task_id = #{@task.id}")])   
+    
+    respond_to do |format| 
+        format.html { redirect_to(task_url(@task.id)) }
+        format.js
+        format.xml  { render :xml => @people_task, :status => "deleted", :location => @task }
+    end
+  end    
+  
 end

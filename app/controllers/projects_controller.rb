@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @root = "projects"
+    
     @roles = Role.all
     @projects = Project.all
     @path = projects_path
@@ -18,8 +20,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    
-    puts "\n show \n "
+    @root = "projects"
+    @trunk = "show"
+    @leaf = params[:id]
     
     @project = Project.find(params[:id])
     puts @project.to_json
@@ -29,7 +32,7 @@ class ProjectsController < ApplicationController
    # @i = ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")
    # puts @in.to_json
     @users = Person.not_in_the_team(@project.id)#.find_by_sql()#.all(:conditions => [" id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")]) 
-    @project_person = ProjectsPerson.new
+    @project_person = PeopleProject.new
     puts @team_members.to_json
     puts @users.to_json
     
@@ -42,6 +45,9 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    @root = "projects"
+    @branch = "new"
+    
     @project = Project.new
 
     respond_to do |format|
@@ -52,12 +58,19 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @root = "projects"
+    @branch = "edit"
+    @leaf = params[:id]
+        
     @project = Project.find(params[:id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
+    @root = "projects"
+    @branch = "new"    
+    
     @project = Project.new(params[:project])
     @project.manager = current_user
     
@@ -75,6 +88,9 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
+    @root = "projects"
+    @branch = "new"    
+    
     @project = Project.find(params[:id])
 
     respond_to do |format|
@@ -91,6 +107,8 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    @root = "projects"
+    
     @project = Project.find(params[:id])
     @project.destroy
 
@@ -105,10 +123,10 @@ class ProjectsController < ApplicationController
     puts params
     @project = Project.find(:first, :conditions => "id = #{params[:id]}")
     puts @project.to_json
-    @project_person = ProjectsPerson.new(:project_id => @project.id, :person_id => params[:person_id])
+    @project_person = PeopleProject.new(:project_id => @project.id, :person_id => params[:person_id])
     puts @project_person.to_json
-    @team_members = Person.all(:conditions => ["id in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])
-    @users =  Person.all(:conditions => ["id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])   
+    @team_members = Person.all(:conditions => ["id in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])   
     
     respond_to do |format| 
       if @project_person.save
@@ -125,10 +143,10 @@ class ProjectsController < ApplicationController
   def remove_team_member
     puts "remove"
     @project = Project.find(:first, :conditions => "id = #{params[:id]}")
-    @project_person = ProjectsPerson.find(:first, :conditions => ["project_id = #{@project.id} and person_id = #{params[:person_id]}"])
+    @project_person = PeopleProject.find(:first, :conditions => ["project_id = #{@project.id} and person_id = #{params[:person_id]}"])
     @project_person.destroy
-    @team_members = Person.all(:conditions => ["id in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])
-    @users =  Person.all(:conditions => ["id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")])   
+    @team_members = Person.all(:conditions => ["id in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])
+    @users =  Person.all(:conditions => ["id not in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])   
     
     respond_to do |format| 
         format.html { redirect_to(project_url(@project.id)) }

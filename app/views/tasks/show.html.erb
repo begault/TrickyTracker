@@ -40,5 +40,8 @@
   <%= @task.author %>
 </p>
 
+<div id="team_members">
+<%= render :partial => "assignees_list"%>
+</div>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

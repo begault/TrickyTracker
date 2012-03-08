@@ -1,6 +1,6 @@
-class CreateProjectsPeople < ActiveRecord::Migration
+class CreatePeopleProjects < ActiveRecord::Migration
   def change
-    create_table :projects_people do |t|
+    create_table :people_projects do |t|
       t.integer :project_id
       t.integer :person_id
       t.text :job_description

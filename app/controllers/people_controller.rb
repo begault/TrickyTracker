@@ -7,19 +7,31 @@ class PeopleController < ApplicationController
   before_filter :ensure_logout, :only => [:help, :recover]
  
   def index
+    @root = "people"
+    
     @people = Person.find(:all)
   end
  
-  def show
+  def show   
+    @root = "people"
+    @branch = "show"
+    @leaf = params[:id]
+    
     @person = Person.find(params[:id])
   end
  
   def new
+    @root = "people"
+    @trunk = "new" 
+    
     @person = Person.new
     @roles = Role.all
   end
  
   def create
+    @root = "people"
+    @trunk = "new"     
+    
     @person = Person.new(params[:person])
     @role_person = RolesPerson.new(params[:roles_people])
     
@@ -39,11 +51,19 @@ class PeopleController < ApplicationController
   end
  
   def edit
+    @root = "people"
+    @branch = "edit"
+    @leaf = params[:id]    
+    
     @person = Person.find(@user)
     @roles = Role.all
   end
  
   def update
+    @root = "people"
+    @branch = "edit"
+    @leaf = params[:id]  
+        
     @person = Person.find(@user)
     if @person.update_attributes(params[:person])
       flash[:notice] = "Your account has been updated"
@@ -54,6 +74,8 @@ class PeopleController < ApplicationController
   end
  
   def destroy
+    @root = "people"
+    
     Person.destroy(@user)
     session[:id] = @user = nil
     flash[:notice] = "You are now unregistered"
