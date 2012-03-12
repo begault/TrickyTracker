@@ -21,7 +21,7 @@ Tracker::Application.routes.draw do
   resources :projects
 
   root :to => "application#home"
-  
+  get 'application/admin_panel' => 'application#admin_panel'
   get 'home' => 'application#index'
   
   get 'people/help' => 'people#help'

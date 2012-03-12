@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   end
 
   def your_tasks
-    @tasks = Task.all
+    @tasks = Person.find(current_user).tasks
     
    # @tasks = Task.people.where(:id => params[:user_id])
     @root = "tasks"
@@ -90,6 +90,9 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
+    if @task.closed = true
+      @task.effective_achievement_date = Date.today
+    end
 
     respond_to do |format|
       if @task.update_attributes(params[:task])

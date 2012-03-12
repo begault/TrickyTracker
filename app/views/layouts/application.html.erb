@@ -12,13 +12,10 @@
 	<% if @user %>
 		<%=h link_to "Edit Account", edit_person_path('account') %> -
 		<%=h link_to "Projects", projects_path %> -
-		<%=h link_to "Priorities", priorities_path %> - 
-		<%=h link_to "Stopovers", stopovers_path %> -
-		<%=h link_to"Roles", new_role_path %> - 
-		<%=h link_to "People", people_path %> - 
+
 		<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %> - 
 	    <%=h link_to "Logout", @application_session, :method => :delete %> - 
-	    
+	    <%=h link_to "Admin", :controller => "application", :action => "admin_panel" %>
 	    <%=h " User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 	    
@@ -31,9 +28,7 @@
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>
 	  
 	  <hr />
-	  
-	  Tasks : <%=h @user %>
-	  
+	  	  
 	<%= yield %>
 
 </body>

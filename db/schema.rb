@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221141208) do
+ActiveRecord::Schema.define(:version => 20120312100253) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(:version => 20120221141208) do
     t.string   "email_address"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "people_projects", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "person_id"
+    t.text     "job_description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "people_tasks", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "person_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "priorities", :force => true do |t|
@@ -35,14 +50,6 @@ ActiveRecord::Schema.define(:version => 20120221141208) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "projects_people", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "person_id"
-    t.text     "job_description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -82,13 +89,8 @@ ActiveRecord::Schema.define(:version => 20120221141208) do
     t.integer  "author"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
-  end
-
-  create_table "tasks_people", :force => true do |t|
-    t.integer  "task_id"
-    t.integer  "person_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "open"
+    t.boolean  "closed"
   end
 
 end

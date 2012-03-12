@@ -1,4 +1,4 @@
-<%= form_for(@task) do |f| %>
+<%= form_for(@task, :html => {:class => "form"}) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -30,12 +30,8 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :tmp_achievement_date %><br />
+    <%= f.label :due_date %><br />
     <%= f.date_select :tmp_achievement_date %>
-  </div>
-  <div class="field">
-    <%= f.label :effective_achievement_date %><br />
-    <%= f.date_select :effective_achievement_date %>
   </div>
   <div class="field">
     <%= f.label :priority_id %><br />
@@ -45,6 +41,11 @@
     <%= f.label :stopover_id %><br />
     <%= f.collection_select :stopover_id, @stopovers, :id, :name %>
   </div>
+  <div class="field">
+  	<%= f.label :closed %><br />
+  	<%= f.check_box :closed %>
+  </div>
+  
   <br />
   <div class="actions">
     <%= f.submit %>

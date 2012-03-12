@@ -1,5 +1,3 @@
-<% @tasks.each do |t| %>
+<h1>Tasks</h1>
 
-	<%=h t.people.to_json %>
-
-<% end %>
+<%= render :partial => "task_list"%>
