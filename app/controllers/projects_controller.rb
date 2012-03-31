@@ -144,6 +144,11 @@ class ProjectsController < ApplicationController
     puts "remove"
     @project = Project.find(:first, :conditions => "id = #{params[:id]}")
     @project_person = PeopleProject.find(:first, :conditions => ["project_id = #{@project.id} and person_id = #{params[:person_id]}"])
+    @tasks = Task.where(:project_id => @project.id)
+    @tasks.each() do  |task| 
+      @task_person = PeopleTask.find(:first, :conditions => ["task_id = #{task.id} and person_id = #{params[:person_id]}"])
+      @task_person.destroy      
+    end
     @project_person.destroy
     @team_members = Person.all(:conditions => ["id in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])
     @users =  Person.all(:conditions => ["id not in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])   

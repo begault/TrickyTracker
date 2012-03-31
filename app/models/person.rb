@@ -70,7 +70,7 @@ class Person < ActiveRecord::Base
  end
  
  def self.not_assignees(task_id)
-   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from people_tasks pp where pp.person_id = p.id and pp.task_id = #{task_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+   find_by_sql("select p.id, p.name from people p where exists (select ppr.person_id from people_projects ppr where ppr.person_id = p.id and ppr.project_id = #{Task.find(task_id).project.id}) and not exists (select pp.person_id from people_tasks pp where pp.person_id = p.id and pp.task_id = #{task_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
  end 
  
   private
