@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
+  def admin_panel
+    
+  end
+  
+  def home
+    
+  end
+  
   def ensure_login
     unless @user
       flash[:notice] = "Please login to continue"
@@ -18,6 +26,20 @@ class ApplicationController < ActionController::Base
       redirect_to(root_url)
     end
   end
+  
+  def current_user
+    if session[:id]
+      if @application_session = Session.find_by_id(session[:id])   
+        return @application_session.person.id
+      end
+    end     
+    return 0
+  end
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to root_url
+  end  
   
   private
   

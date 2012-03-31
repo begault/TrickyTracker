@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  project_id: 1
+  description: MyText
+  tmp_achievement_date: 2012-02-20
+  effective_achievement_date: 2012-02-20
+  priority_id: 1
+  stopover_id: 1
+  author: 1
+
+two:
+  name: MyString
+  project_id: 1
+  description: MyText
+  tmp_achievement_date: 2012-02-20
+  effective_achievement_date: 2012-02-20
+  priority_id: 1
+  stopover_id: 1
+  author: 1

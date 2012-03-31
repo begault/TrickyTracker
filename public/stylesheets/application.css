@@ -1,0 +1,42 @@
+body {
+	padding: 0 10% 0 10%;
+	height: 100%;
+	font: 14px/1.5 verdana, arial, helvetica, sans-serif;
+	position: relative;
+	min-height: 100%;
+	
+}
+.container 
+{
+	background-color: #FFFFFF;
+	border-top: 5px solid #0091ED;
+	box-shadow: 0 0 6px #7D7D7D;	
+}
+
+.content 
+{
+	padding: 10px;
+	padding-bottom: 48px;
+	min-height: 600px;	
+}
+
+footer 
+{
+	bottom: 0;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+header
+{
+	
+}
+
+.bar_footer
+{
+	background: repeat-x scroll right top transparent url("/images/bar_footer.gif");
+	clear: both;
+    height: 15px;
+    width: 100%;	
+}

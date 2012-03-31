@@ -6,6 +6,12 @@ class Person < ActiveRecord::Base
   ENCRYPT = Digest::SHA256
  
   has_many :sessions, :dependent => :destroy
+  belongs_to :role
+  has_many :owned_projects
+  has_many :owned_tasks
+  has_and_belongs_to_many :projects
+  has_many :people_tasks, :dependent => :destroy
+  has_many :tasks, :through => :people_tasks, :order => 'name'      
  
   validates_uniqueness_of :name, :message => "is already in use by another person"
  
@@ -16,7 +22,7 @@ class Person < ActiveRecord::Base
     :message => "must be 4 to 16 characters",
     :unless => :password_is_not_being_updated?
     
-  validates_format_of :email,
+  validates_format_of :email_address,
                       :with => /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/i,
                       :message => "must be a valid address"    
  
@@ -39,6 +45,33 @@ class Person < ActiveRecord::Base
       self.encrypted_password = ENCRYPT.hexdigest(password + self.salt)
     end
   end
+  
+  #def role?(role) 
+   
+    #return !!self.roles.find_by_name(role.to_s.camelize)
+  #end
+  
+  def role
+    return Role.find(:first, :conditions => {:id => (RolesPerson.find(:first, :conditions => {:person_id => self.id})).role_id}).name
+  end
+ 
+ def self.team_members(project_id)
+  # find_by_sql()
+   return Person.find(:all, :conditions => "id in(select person_id from people_projects where project_id = #{project_id})")
+ end
+ 
+ def self.not_in_the_team(project_id)
+   find_by_sql("select p.id, p.name from people p where not exists (select pp.person_id from people_projects pp where pp.person_id = p.id and pp.project_id = #{project_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+ end
+ 
+ def self.task_assignees(task_id)
+  # find_by_sql()
+   return Person.find(:all, :conditions => "id in(select person_id from people_tasks where task_id = #{task_id})")
+ end
+ 
+ def self.not_assignees(task_id)
+   find_by_sql("select p.id, p.name from people p where exists (select ppr.person_id from people_projects ppr where ppr.person_id = p.id and ppr.project_id = #{Task.find(task_id).project.id}) and not exists (select pp.person_id from people_tasks pp where pp.person_id = p.id and pp.task_id = #{task_id})")#.find(:all, :conditions => "id NOT IN (select person_id from projects_people where project_id = #{project_id})")
+ end 
  
   private
  

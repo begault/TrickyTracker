@@ -1,10 +1,37 @@
 Tracker::Application.routes.draw do
   
-  root :to => 'people#index'
+  resources :roles
   
+  resources :people_tasks
+
+  resources :projects_people
+
+  resources :stopovers
+
+  resources :priorities
+
+  post 'tasks/:id/add' => 'tasks#add_task_assignee'
+  post 'tasks/:id/remove' => 'tasks#remove_task_assignee'  
+  get 'tasks/your_tasks' => 'tasks#your_tasks'
+  resources :tasks
+
+  #post 'add_team_member' => 'projects#add_team_member'
+  post 'projects/:id/add' => 'projects#add_team_member'
+  post 'projects/:id/remove' => 'projects#remove_team_member'
+  resources :projects
+
+  root :to => "application#home"
+  get 'application/admin_panel' => 'application#admin_panel'
+  get 'home' => 'application#index'
+  
+  get 'people/help' => 'people#help'
+  post 'people/recover' => 'people#recover'
   resources :people
 
-  resources :sessions, :member => {:recovery => :get}
+    #:collection => {:help => :get, :recover => :post}
+
+  resources :sessions, 
+    :member => {:recovery => :get}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

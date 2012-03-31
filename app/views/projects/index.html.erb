@@ -1,0 +1,33 @@
+<h1>Projects</h1>
+
+<fieldset>
+	Description of this page	
+</fieldset>
+	
+</div>
+
+<table class="list_layout">
+  <tr>
+    <th>Name</th>
+    <th>Manager</th>
+    <th>Starting</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.project_manager.name %></td>
+    <td><%= project.created_at.to_date %></td>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project', new_project_path %>
