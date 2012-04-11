@@ -1,0 +1,2 @@
+module StopoversHelper
+end

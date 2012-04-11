@@ -1,0 +1,59 @@
+<%= form_for(@task, :html => {:class => "form"}) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+	<% if @project.nil? %>
+	
+	  <div class="field">
+	    <%= f.label :project_id %><br />
+	    <%= f.collection_select :project_id, @projects, :id, :name %>
+	  </div>
+	<% else %>
+		<%= f.hidden_field :project_id, :value => @project.id %>
+	<% end %>  
+	
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br />
+    <%= f.date_select :tmp_achievement_date %>
+  </div>
+  <div class="field">
+    <%= f.label :priority_id %><br />
+    <%= f.collection_select :priority_id, @priorities, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :stopover_id %><br />
+    <%= f.collection_select :stopover_id, @stopovers, :id, :name %>
+  </div>
+  <div class="field">
+  	<%= f.label :closed %><br />
+  	<%= f.check_box :closed %>
+  </div>
+  
+  <br />
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% if @project %>
+	<%= link_to 'Back', project_path(@project) %>
+<% else %>
+	<%= link_to 'Back', tasks_path %>
+<% end %>

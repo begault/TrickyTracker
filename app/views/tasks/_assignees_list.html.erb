@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <th>Task assignees</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @team_members.each do |person| %>
+  <tr>
+    <td><%= person.name %></td>
+    <td><%= link_to 'Show', person %></td>
+    <td><%= button_to 'Remove from team', :action => :remove_task_assignee, :person_id => person.id, :remote => true %></td>
+     </tr>
+<% end %>
+</table>
+
+<br />
+
+<table>
+  <tr>
+    <th>Available people</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |u| %>
+  <tr>
+    <td><%= u.name %></td>
+    <td><%= link_to 'Show', u %></td>
+    <td><%= button_to 'Add to team', :action => :add_task_assignee, :person_id => u.id, :remote => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<br />
+

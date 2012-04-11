@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,23 +11,86 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220102246) do
+ActiveRecord::Schema.define(:version => 20120312100253) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
     t.string   "salt"
     t.string   "encrypted_password"
     t.string   "email_address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "people_projects", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "person_id"
+    t.text     "job_description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "people_tasks", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "person_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "priorities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.integer  "manager"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles_people", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "person_id"
   end
 
   create_table "sessions", :force => true do |t|
     t.integer  "person_id"
     t.string   "ip_address"
     t.string   "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stopovers", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.text     "description"
+    t.date     "tmp_achievement_date"
+    t.date     "effective_achievement_date"
+    t.integer  "priority_id"
+    t.integer  "stopover_id"
+    t.integer  "author"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.boolean  "open"
+    t.boolean  "closed"
   end
 
 end

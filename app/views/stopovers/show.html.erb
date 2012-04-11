@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @stopover.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @stopover.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_stopover_path(@stopover) %> |
+<%= link_to 'Back', stopovers_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Manager:</b>
+  <%= @project.manager %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<h1>Tasks</h1>
+
+<%= render :partial => "tasks/task_list"%>
+
+<br />
+
+
+<%= link_to 'New Task', new_task_path(:id => @project.id) %>
+<br />
+<br />
+
+<div id="team_members">
+<%= render :partial => "team_list"%>
+</div>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

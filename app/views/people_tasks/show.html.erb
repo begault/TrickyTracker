@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Task:</b>
+  <%= @tasks_person.task_id %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @tasks_person.person_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_people_task_path(@tasks_person) %> |
+<%= link_to 'Back', people_tasks_path %>

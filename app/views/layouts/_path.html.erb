@@ -1,0 +1,21 @@
+<% if @root %>
+<%=h "Path : " %>
+<%=h link_to @root, :controller => @root %> / 
+
+<% if @trunk %>
+
+<%=h link_to @trunk, :controller => @root, :action => @trunk %> / 
+
+<% else %>
+
+<% if @branch and @leaf %>
+
+<%=h link_to @branch, :controller => @root, :action => @branch, :id => @leaf %> / 
+
+
+
+<% end %>
+
+<% end %>
+
+<% end %>

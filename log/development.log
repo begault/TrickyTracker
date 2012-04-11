@@ -31,3 +31,11 @@ Migrating to CreatePeople (20120220102246)
 [0m
   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("people")
   [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("sessions")[0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-04-11 20:55:12 +0200
+Processing by ApplicationController#home as HTML
+  Rendered application/home.html.erb within layouts/application (90.0ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (2.0ms)
+Completed 200 OK in 663ms (Views: 663.0ms | ActiveRecord: 0.0ms)

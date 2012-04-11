@@ -1,0 +1,67 @@
+.form 
+{
+	margin: auto;
+	width: 90%;
+}
+
+
+.form .field label 
+{
+	display:block;
+	font-weight:bold;
+	text-align:left;
+	width:100%;
+	float:left;	
+}
+
+
+.form .field input 
+{
+	float:left;
+	font-size:12px;
+	padding:4px 2px;
+	border:solid 1px #aacfe4;
+	width:100%;
+	margin:2px 0 20px 10px;	
+	clear: both;
+}
+
+.form .field input[type="checkbox"] 
+{
+	width; 15%;
+}
+
+.form .field textarea 
+{
+	float:left;
+	font-size:12px;
+	padding:4px 2px;
+	border:solid 1px #aacfe4;
+	width:100%;
+	margin:2px 0 20px 10px;	
+}
+
+.form .field button 
+{
+	float: right;
+	clear:both;
+	margin-left:150px;
+	width:80%;
+	height:31px;
+	text-align:center;
+	line-height:31px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+.form .field .clear 
+{
+	clear: both;
+}
+
+.form .field select 
+{
+	float: left;
+	width: 15%;
+}
