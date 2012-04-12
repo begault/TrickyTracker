@@ -25,43 +25,17 @@ footer
 	bottom: 0;
 	padding: 10px;
 	width: 100%;
-}
-
-footer .footer_content
-{
-	width: 98%;
-	display:inline-block;	
-	margin:auto;
-
-}
-
-footer .right{
-	width: 40%;
-	float:right;
-	text-align:right;
-}
-
-footer .left{
-	text-align:left;
-	float: left;
-	width: 40%;
-}
-
-.login-square 
-{
-	width: 30%;
-	margin: auto;
 	text-align: center;
 }
 
 header
 {
-	text-align:right;
+	
 }
 
 .bar_footer
 {
-	background: repeat-x scroll right top transparent url("/images/bar_footer.gif");
+	background: repeat-x scroll right top transparent url("../bar_footer.gif");
 	clear: both;
     height: 15px;
     width: 100%;	

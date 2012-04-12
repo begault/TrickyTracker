@@ -1,9 +1,5 @@
 <header>
 	
-	<div>
-		
-	</div>
-	
 	<%=h link_to "Home", root_url %> - 
 	
 	<% if @user %>
@@ -22,6 +18,8 @@
 	<% end %>
 	
 	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>
-	  
+	  <% if session[:id] %>	
+		<%=h link_to "Logout", @application_session, :method => :delete %> 
+		<% end %>
 	  <hr />
 </header>	  
