@@ -15,8 +15,8 @@
 			</li>
 			<li class="right_button">
 				<%=h link_to "Edit Account", edit_person_path('account') %> 
-				<ul>
-					<li>
+				<ul class="level2">
+					<li class="level2">
 						<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %>
 					</li>
 					<li>

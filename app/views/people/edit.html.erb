@@ -1,3 +1,8 @@
+<%= render :partial => "application/admin_nav" %>
+
+
+<div class="admin_content">
+
 <%= error_messages_for :person %>
 
 <fieldset>
@@ -12,3 +17,4 @@
 <%= button_to "Unregister", @person, :method => :delete, 
                                      :confirm => "Are you sure?" %>
 
+</div>
