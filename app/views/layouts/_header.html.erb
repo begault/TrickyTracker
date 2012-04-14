@@ -8,18 +8,21 @@
 			<li class="left_button">
 				<%=h link_to "Projects", projects_path %>
 			</li>
+			<li class="left_button">
+				<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %>
+			</li>			
 			&nbsp;&nbsp;	
 			<%=h "User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
 			<li class="right_button">
 				<%=h link_to "Admin", :controller => "application", :action => "admin_panel" %>
 			</li>
 			<li class="right_button">
-				<%=h link_to "Edit Account", edit_person_path('account') %> 
+				<%=h link_to "Account Settings", "#" %> 
 				<ul class="level2">
 					<li class="level2">
-						<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %>
+						<%=h link_to "Edit Account", edit_person_path('account') %> 
 					</li>
-					<li>
+					<li class="level2">
 						<%=h link_to "Logout", @application_session, :method => :delete %> 	
 					</li>	
 				</ul>	
@@ -33,8 +36,7 @@
 	</nav>
 </header>	 
 	    <div class="info_user">
-	    	<%= "- Message: #{flash[:notice]}" if flash[:notice] %> 
-	    	-
+	    	
 	    	<%= render :partial => "layouts/path"%>
 	    </div>	
 	    

@@ -2,7 +2,7 @@
 
 <div class="admin_content">
 <%= error_messages_for :person %>
-
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
   <legend>Register</legend>
 
   <%= render :partial => 'form' %>

@@ -63,12 +63,13 @@ class PeopleController < ApplicationController
     @root = "people"
     @branch = "edit"
     @leaf = params[:id]  
-        
+    @roles = Role.all    
     @person = Person.find(@user)
     if @person.update_attributes(params[:person])
       flash[:notice] = "Your account has been updated"
-      redirect_to(root_url)
+      render(:action => 'edit')
     else
+      flash[:error] = "The update has failed"
       render(:action => 'edit')
     end
   end
