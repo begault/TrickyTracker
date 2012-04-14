@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Project Info</h1>
+
+<fieldset>
+
 <p>
   <b>Name:</b>
   <%= @project.name %>
@@ -15,21 +19,23 @@
   <%= @project.description %>
 </p>
 
+</fieldset>
+
 <h1>Tasks</h1>
 
 <%= render :partial => "tasks/task_list"%>
 
-<br />
 
 
+<div class="actions">
 <%= link_to 'New Task', new_task_path(:id => @project.id) %>
-<br />
-<br />
+</div>
 
 <div id="team_members">
 <%= render :partial => "team_list"%>
 </div>
 
-
+<div class="actions">
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+</div>

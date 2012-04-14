@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Task #<%= @task.id %></h1>
+
 <p>
   <b>Name:</b>
   <%= @task.name %>
@@ -44,4 +46,6 @@
 <%= render :partial => "assignees_list"%>
 </div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<div class="actions">
+<%= link_to 'Edit', edit_task_path(@task) %> 
+</div>
