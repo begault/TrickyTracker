@@ -87,10 +87,9 @@ ActiveRecord::Schema.define(:version => 20120312100253) do
     t.integer  "priority_id"
     t.integer  "stopover_id"
     t.integer  "author"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.boolean  "open"
-    t.boolean  "closed"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.boolean  "closed",                     :default => false
   end
 
 end

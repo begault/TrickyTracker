@@ -3,8 +3,8 @@ class PeopleController < ApplicationController
   load 'crypto.rb'
   include Crypto
   
-  before_filter :ensure_login, :only => [:edit, :update, :destroy, :new, :create]
-  before_filter :ensure_logout, :only => [:help, :recover]
+  #before_filter :ensure_login, :only => [:edit, :update, :destroy, :new, :create]
+  #before_filter :ensure_logout, :only => [:help, :recover]
  
   def index
     @root = "people"
@@ -43,7 +43,7 @@ class PeopleController < ApplicationController
         #session[:id] = @session.id
         flash[:notice] = "#{@person.name} is now registered"
         #redirect_to(root_url)
-        render(:action => 'new')
+        redirect_to(:controller => "people")
     else
       flash[:error] = "Role has not been linked ... "
       render(:action => 'new')

@@ -1,25 +1,45 @@
 <header>
-	
-	<%=h link_to "Home", root_url %> - 
-	
-	<% if @user %>
-		<%=h link_to "Edit Account", edit_person_path('account') %> -
-		<%=h link_to "Projects", projects_path %> -
-
-		<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %> - 
-	    <%=h link_to "Admin", :controller => "application", :action => "admin_panel" %>
-	    <%=h " User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
-	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<nav>
+		<ul>
+			<li class="left_button">
+				<%=h link_to "Home", root_url %>
+			</li>
+			<% if @user %>	
+			<li class="left_button">
+				<%=h link_to "Projects", projects_path %>
+			</li>
+			&nbsp;&nbsp;	
+			<%=h "User: #{@user.name} - IP Address: #{@application_session.ip_address}" %>
+			<li class="right_button">
+				<%=h link_to "Admin", :controller => "application", :action => "admin_panel" %>
+			</li>
+			<li class="right_button">
+				<%=h link_to "Edit Account", edit_person_path('account') %> 
+				<ul>
+					<li>
+						<%=h link_to "Your tasks", :controller => "tasks", :action => "your_tasks", :user_id => @user.id %>
+					</li>
+					<li>
+						<%=h link_to "Logout", @application_session, :method => :delete %> 	
+					</li>	
+				</ul>	
+			</li>
+			<% else %>
+				<li class="right_button">
+					<%= link_to "Login", new_session_path %>
+				</li>
+				<% end %>
+		</ul>
+	</nav>
+</header>	 
+	    <div class="info_user">
+	    	<%= "- Message: #{flash[:notice]}" if flash[:notice] %> 
+	    	-
+	    	<%= render :partial => "layouts/path"%>
+	    </div>	
 	    
-	    <%= render :partial => "layouts/path"%>
 	    
-	<% else %>
-	    <%= link_to "Login", new_session_path %>	 
-	<% end %>
+	 
 	
-	  <%= "- Message: #{flash[:notice]}" if flash[:notice] %>
-	  <% if session[:id] %>	
-		<%=h link_to "Logout", @application_session, :method => :delete %> 
-		<% end %>
-	  <hr />
-</header>	  
+	
+	 
