@@ -1,6 +1,23 @@
+<style>
+	.show_left{
+		height: auto;
+		min-height: 350px;
+		border: none;
+	}
+	.show_right
+	{
+		height: auto;
+		min-height: 350px;
+		border: none;
+	}
+</style>
+
 <div class="msg_banner">
 <%= " Message: #{flash[:notice]}" if flash[:notice] %> 
 </div>
+
+<div class="show_left">
+
 <h1>Project Info</h1>
 
 <fieldset>
@@ -22,7 +39,14 @@
 
 </fieldset>
 
-<h1>Tasks</h1>
+</div>
+
+<div class="show_right">
+<div id="team_members">
+<%= render :partial => "team_list"%>
+</div>	
+</div>
+
 
 <%= render :partial => "tasks/task_list"%>
 
@@ -32,11 +56,10 @@
 <%= link_to 'New Task', new_task_path(:id => @project.id) %>
 </div>
 
-<div id="team_members">
-<%= render :partial => "team_list"%>
-</div>
+
+<br />
 
 <div class="actions">
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit Info', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 </div>

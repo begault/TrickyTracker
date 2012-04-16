@@ -6,6 +6,7 @@
 <h1>Priorities</h1>
 
 <table class="list_layout">
+	<thead>
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -13,7 +14,7 @@
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
 <% @priorities.each do |priority| %>
   <tr>
     <td><%= priority.name %></td>

@@ -6,7 +6,13 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :people,
     :class_name => "Person"
   
-  
+  def get_task_ids
+    tab = []
+    self.tasks.each do |task|
+      tab<<task.id
+    end
+    return tab;
+  end
   
   
 end

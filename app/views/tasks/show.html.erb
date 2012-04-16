@@ -1,6 +1,9 @@
 <div class="msg_banner">
 <%= " Message: #{flash[:notice]}" if flash[:notice] %> 
 </div>
+
+<div class="show_page">
+<div class="show_left">
 <h1>Task #<%= @task.id %></h1>
 
 <p>
@@ -12,12 +15,6 @@
   <b>Project:</b>
   <%= @task.project_id %>
 </p>
-
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
-
 <p>
   <b>Tmp achievement date:</b>
   <%= @task.tmp_achievement_date %>
@@ -39,12 +36,21 @@
 </p>
 
 <p>
-  <b>Author:</b>
+  <b>Author:</b>	
   <%= @task.author.name %>
 </p>
 
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+</div>
+
+</div>
+<div class="show_right">
 <div id="team_members">
 <%= render :partial => "assignees_list"%>
+</div>
 </div>
 
 <div class="actions">

@@ -10,8 +10,12 @@
 
 
 
-role = Role.create([{:name => "super_admin"}, {:name => "project_team"}])
+roles = Role.create([{:name => "super_admin"}, {:name => "project_team"}])
 role_person = RolesPerson.create([{:role_id => 1, :person_id => 1}])
-person = Person.create([{:name => "agathe", :encrypted_password => "fb13ad6022d7f55ebf8b9bd38a7a8c47d1fe8152727847d8efe92853b6d9e6eb", :salt => "sxDn9Pgs+4bt", :email_address => "agathe.begault@gmail.com", :created_at => "2008-10-24 22:06:18 +0200", :updated_at => "2008-10-24 22:06:18 +0200"}])
+people = Person.create!([{:name => "agathe", :password => "agathe", :password_confirmation => "agathe" , :email_address => "agathe.begault@gmail.com"}])
 
-puts "\n person: #{person.to_json}"
+stopovers = Stopover.create([{:name => "Open", :description => "First stage of an object", }])
+
+priorities = Priority.create([{:name => "Low", :description => "Lowest level of priority"}, {:name => "Medium"}, {:name => "High", :description => "Highest level of priority"}])
+
+puts "\n person: #{people.to_json}"

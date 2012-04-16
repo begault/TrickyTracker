@@ -1,5 +1,9 @@
 Tracker::Application.routes.draw do
   
+  resources :categories_tasks
+
+  resources :categories
+
   resources :roles
   
   resources :people_tasks
