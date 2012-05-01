@@ -1,14 +1,22 @@
-<%= error_messages_for :person %>
+<%= render :partial => "application/admin_nav" %>
 
-<fieldset>
-  <legend>Edit Account</legend>
-  
+
+<div class="admin_content">
+
+<%= error_messages_for :person %>
+<div class="msg_banner">
+<%= error_messages_for :person %>
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
+</div>
+<h1> Edit Your Account </h1>
   <%= render :partial => 'form' %>
   
-</fieldset>
 
-<br />
 
+
+<div class="actions">
 <%= button_to "Unregister", @person, :method => :delete, 
                                      :confirm => "Are you sure?" %>
+</div>                                     
 
+</div>

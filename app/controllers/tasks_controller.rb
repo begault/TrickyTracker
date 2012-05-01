@@ -73,6 +73,7 @@ class TasksController < ApplicationController
   def create
     puts params
     @task = Task.new(params[:task])
+    puts "\n current user: #{current_user}"
     @task.author = current_user
 
     respond_to do |format|

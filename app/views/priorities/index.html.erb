@@ -1,6 +1,12 @@
+<%= render :partial => "application/admin_nav" %>
+
+<div class="admin_content">
+
+
 <h1>Priorities</h1>
 
 <table class="list_layout">
+	<thead>
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -8,7 +14,7 @@
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
 <% @priorities.each do |priority| %>
   <tr>
     <td><%= priority.name %></td>
@@ -23,3 +29,5 @@
 <br />
 
 <%= link_to 'New Priority', new_priority_path %>
+
+</div>

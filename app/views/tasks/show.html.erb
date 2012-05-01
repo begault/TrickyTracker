@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="msg_banner">
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
+</div>
+
+<div class="show_page">
+<div class="show_left">
+<h1>Task #<%= @task.id %></h1>
 
 <p>
   <b>Name:</b>
@@ -9,12 +15,6 @@
   <b>Project:</b>
   <%= @task.project_id %>
 </p>
-
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
-
 <p>
   <b>Tmp achievement date:</b>
   <%= @task.tmp_achievement_date %>
@@ -36,12 +36,23 @@
 </p>
 
 <p>
-  <b>Author:</b>
+  <b>Author:</b>	
   <%= @task.author.name %>
 </p>
 
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+</div>
+
+</div>
+<div class="show_right">
 <div id="team_members">
 <%= render :partial => "assignees_list"%>
 </div>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<div class="actions">
+<%= link_to 'Edit', edit_task_path(@task) %> 
+</div>

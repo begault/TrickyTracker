@@ -147,7 +147,9 @@ class ProjectsController < ApplicationController
     @tasks = Task.where(:project_id => @project.id)
     @tasks.each() do  |task| 
       @task_person = PeopleTask.find(:first, :conditions => ["task_id = #{task.id} and person_id = #{params[:person_id]}"])
-      @task_person.destroy      
+      if @task_person
+        @task_person.destroy      
+      end
     end
     @project_person.destroy
     @team_members = Person.all(:conditions => ["id in (?)", PeopleProject.find(:all, :conditions => "project_id = #{@project.id}")])

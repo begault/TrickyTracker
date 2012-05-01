@@ -1,6 +1,11 @@
+<%= render :partial => "application/admin_nav" %>
+
+<div class="admin_content">
+
 <h1>Listing stopovers</h1>
 
 <table class="list_layout">
+<thead>
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -8,7 +13,7 @@
     <th></th>
     <th></th>
   </tr>
-
+</thead>
 <% @stopovers.each do |stopover| %>
   <tr>
     <td><%= stopover.name %></td>
@@ -23,3 +28,5 @@
 <br />
 
 <%= link_to 'New Stopover', new_stopover_path %>
+
+</div>

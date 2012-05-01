@@ -1,33 +1,84 @@
 <h1>Projects</h1>
-
-<fieldset>
-	Description of this page	
-</fieldset>
-	
-</div>
-
 <table class="list_layout">
-  <tr>
-    <th>Name</th>
-    <th>Manager</th>
-    <th>Starting</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.project_manager.name %></td>
-    <td><%= project.created_at.to_date %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Manager</th>
+			<th>Starting</th>
+			<th>Nb Tasks</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each do |project| %>
+		<tr>
+			<td onclick="tasks_list_display(<%= project.get_task_ids() %>); tasks_header_display(<%= project.id %>, <%= project.get_task_ids() %>); return false;"><%= project.name %></td>
+			<td onclick="tasks_list_display(<%= project.get_task_ids() %>); tasks_header_display(<%= project.id %>, <%= project.get_task_ids() %>); return false;"><%= project.project_manager.name %></td>
+			<td onclick="tasks_list_display(<%= project.get_task_ids() %>); tasks_header_display(<%= project.id %>, <%= project.get_task_ids() %>); return false;"><%= project.created_at.to_date %></td>
+			<td><%= project.get_task_ids.count %></td>
+			<td><%= link_to 'Show', project %></td>
+			<td><%= link_to 'Edit', edit_project_path(project) %></td>
+			<td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+		<tr id="tasks_title_<%= project.id %>" class="project_task" style="display:none;">
+			<td class="tasks_table" colspan="7">
+			<table class="list_layout">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Due Date</th>
+						<th>Effective End Date</th>
+						<th>Priority</th>
+						<th>Stopover</th>
+						<th>Author</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% project.tasks.each do |task| %>
+					<tr id="task_<%= task.id %>" class="project_task" style="display:none;">
+						<td><%= task.name %></td>
+						<td><%= task.tmp_achievement_date %></td>
+						<td><%= task.effective_achievement_date %></td>
+						<td><%= task.priority.name %></td>
+						<td><%= task.stopover.name %></td>
+						<td><%= task.author.name %></td>
+						<td><%= link_to 'Show', task %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+	<% end %>
 </table>
-
 <br />
-
 <%= link_to 'New Project', new_project_path %>
+<script>
+	function tasks_header_display(project_id, tasks) {
+		if(tasks != "") {
+			var tasks_header = document.getElementById('tasks_title_' + project_id);
+			if(tasks_header.style.display == 'none') {
+				tasks_header.style.display = 'table-row';
+			} else {
+				tasks_header.style.display = 'none';
+			}
+		}
+
+	};
+
+	function tasks_list_display(tasks) {
+		for(var i in tasks) {
+			var tasks_list = document.getElementById('task_' + tasks[i]);
+			if(tasks_list.style.display == 'none') {
+				tasks_list.style.display = 'table-row';
+			} else {
+				tasks_list.style.display = 'none';
+			}
+		}
+
+	};
+</script>

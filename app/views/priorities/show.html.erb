@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%= render :partial => "application/admin_nav" %>
 
+<div class="admin_content">
+
+<div class="msg_banner">
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
+</div>
 <p>
   <b>Name:</b>
   <%= @priority.name %>
@@ -13,3 +18,5 @@
 
 <%= link_to 'Edit', edit_priority_path(@priority) %> |
 <%= link_to 'Back', priorities_path %>
+
+</div>

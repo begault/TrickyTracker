@@ -1,4 +1,26 @@
-<p id="notice"><%= notice %></p>
+<style>
+	.show_left{
+		height: auto;
+		min-height: 350px;
+		border: none;
+	}
+	.show_right
+	{
+		height: auto;
+		min-height: 350px;
+		border: none;
+	}
+</style>
+
+<div class="msg_banner">
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
+</div>
+
+<div class="show_left">
+
+<h1>Project Info</h1>
+
+<fieldset>
 
 <p>
   <b>Name:</b>
@@ -15,21 +37,29 @@
   <%= @project.description %>
 </p>
 
-<h1>Tasks</h1>
+</fieldset>
 
-<%= render :partial => "tasks/task_list"%>
+</div>
 
-<br />
-
-
-<%= link_to 'New Task', new_task_path(:id => @project.id) %>
-<br />
-<br />
-
+<div class="show_right">
 <div id="team_members">
 <%= render :partial => "team_list"%>
+</div>	
 </div>
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= render :partial => "tasks/task_list"%>
+
+
+
+<div class="actions">
+<%= link_to 'New Task', new_task_path(:id => @project.id) %>
+</div>
+
+
+<br />
+
+<div class="actions">
+<%= link_to 'Edit Info', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+</div>

@@ -1,9 +1,11 @@
+<%= render :partial => "application/admin_nav" %>
+
+<div class="admin_content">
 <%= error_messages_for :person %>
+<%= " Message: #{flash[:notice]}" if flash[:notice] %> 
 
-<fieldset>
-  <legend>Register</legend>
 
+<h1> Register a new user </h1>
   <%= render :partial => 'form' %>
   
-</fieldset>
-
+</div>
