@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   
   def current_user
     if session[:id]
-      if @application_session = Session.find_by_id(session[:id])   
+      if @application_session = Session.find_by_id(session[:id])
         return @application_session.person
       end
     end     

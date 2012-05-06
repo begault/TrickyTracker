@@ -25,16 +25,10 @@ class ProjectsController < ApplicationController
     @leaf = params[:id]
     
     @project = Project.find(params[:id])
-    puts @project.to_json
     @tasks = @project.tasks
     @team_members = Person.team_members(@project.id)
-    puts "\n between"
-   # @i = ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")
-   # puts @in.to_json
     @users = Person.not_in_the_team(@project.id)#.find_by_sql()#.all(:conditions => [" id not in (?)", ProjectsPerson.find(:all, :conditions => "project_id = #{@project.id}")]) 
     @project_person = PeopleProject.new
-    puts @team_members.to_json
-    puts @users.to_json
     
     respond_to do |format|
       format.html # show.html.erb
@@ -72,7 +66,7 @@ class ProjectsController < ApplicationController
     @branch = "new"    
     
     @project = Project.new(params[:project])
-    @project.manager = current_user
+    @project.manager = current_user.id
     
     respond_to do |format|
       if @project.save
