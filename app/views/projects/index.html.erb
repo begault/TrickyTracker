@@ -38,7 +38,7 @@
 				</thead>
 				<tbody>
 					<% project.tasks.each do |task| %>
-					<% if task.closed == false %>
+					<% if task.closed != true %>
 					<tr id="task_<%= task.id %>" class="project_task" style="display:none;">
 						<td><%= task.name %></td>
 						<td><%= task.tmp_achievement_date %></td>
