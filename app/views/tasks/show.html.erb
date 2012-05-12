@@ -13,7 +13,7 @@
 
 <p>
   <b>Project:</b>
-  <%= @task.project_id %>
+  <%= link_to @task.project.name, project_path(@task.project_id) %>
 </p>
 <p>
   <b>Tmp achievement date:</b>
@@ -27,12 +27,12 @@
 
 <p>
   <b>Priority:</b>
-  <%= @task.priority_id %>
+  <%= @task.priority.name %>
 </p>
 
 <p>
   <b>Stopover:</b>
-  <%= @task.stopover_id %>
+  <%= @task.stopover.name %>
 </p>
 
 <p>

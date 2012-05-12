@@ -38,6 +38,7 @@
 				</thead>
 				<tbody>
 					<% project.tasks.each do |task| %>
+					<% if task.closed == false %>
 					<tr id="task_<%= task.id %>" class="project_task" style="display:none;">
 						<td><%= task.name %></td>
 						<td><%= task.tmp_achievement_date %></td>
@@ -47,6 +48,7 @@
 						<td><%= task.author.name %></td>
 						<td><%= link_to 'Show', task %></td>
 					</tr>
+					<% end %>
 					<% end %>
 				</tbody>
 			</table>
