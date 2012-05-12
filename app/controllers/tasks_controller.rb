@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   end
 
   def your_tasks
-    @tasks = Person.find(current_user).tasks
+    @tasks = Task.find(:all, :conditions => ["author = #{current_user.id} and closed !=?", true])
     
    # @tasks = Task.people.where(:id => params[:user_id])
     @root = "tasks"
