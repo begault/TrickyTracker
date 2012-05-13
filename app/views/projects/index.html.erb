@@ -75,10 +75,12 @@
 	function tasks_list_display(tasks) {
 		for(var i in tasks) {
 			var tasks_list = document.getElementById('task_' + tasks[i]);
+			if (tasks_list){
 			if(tasks_list.style.display == 'none') {
 				tasks_list.style.display = 'table-row';
 			} else {
 				tasks_list.style.display = 'none';
+			}
 			}
 		}
 
