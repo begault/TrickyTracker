@@ -30,7 +30,7 @@ body {
     box-shadow: 0 0 10px #7D7D7D;
     height: 50px;
     margin: auto auto 6px;
-    width: 100%;;
+    width: 100%;
 }
 
 h1 
@@ -325,7 +325,7 @@ nav li ul {
 	float:left;
 	width: 49%;
 	height: 100%;
-	min-height: 600px;
+	min-height: 400px;
 }			
 
 .show_right
@@ -334,7 +334,7 @@ nav li ul {
 	float: right;
 	width: 49%;	
 	height: 100%;
-	min-height: 600px;
+	min-height: 400px;
 	padding-left: 1%;
 }
 

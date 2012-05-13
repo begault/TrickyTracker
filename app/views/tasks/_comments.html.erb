@@ -1,0 +1,19 @@
+<%= render :partial => "comments/form" %>
+<table class="list_layout">
+	<caption><h1>Comments</h1></caption>
+<% @comments.each do |com| %>
+	<thead>
+  		<tr>
+  			<th><%= com.author.name %> / <%= com.created_at.to_date %></th>
+  		</tr>
+	</thead>  		
+	<tbody>
+		<tr>
+			<th><%= com.description %></th>
+		</tr>	
+	</tbody>	
+
+<% end %>
+
+</table>
+

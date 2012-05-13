@@ -33,6 +33,7 @@ class TasksController < ApplicationController
     @team_members = Person.task_assignees(@task.id)
     @users = Person.not_assignees(@task.id)
     @comments = Comment.find_by_type(@task)
+    @comment = Comment.new
      
     respond_to do |format|
       format.html # show.html.erb
