@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   end
 
   def your_tasks
-    @tasks = Task.find(:all, :conditions => ["author = #{current_user.id} and closed !=?", true])
+    @tasks = Task.find(:all, :conditions => ["closed !=? and id in (select task_id from people_tasks where person_id = #{current_user.id})", true])
     
    # @tasks = Task.people.where(:id => params[:user_id])
     @root = "tasks"
@@ -32,8 +32,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @team_members = Person.task_assignees(@task.id)
     @users = Person.not_assignees(@task.id)
-    puts "\n people : #{@users.to_json}" 
- 
+    @comments = Comment.find_by_type(@task)
+     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }
