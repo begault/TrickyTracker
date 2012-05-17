@@ -1,0 +1,29 @@
+
+<fieldset class="category_list">
+<h1>Task categories</h1>
+
+<div class="task_categories">
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @task_cats.each do |tc| %>
+  <tr>
+    <td><%= tc.name %></td>
+    <td><%= link_to 'Show', tc %></td>
+    <td><%= button_to 'Remove', :action => :remove_task_category, :category_id => tc.id, :remote => true %></td>
+     </tr>
+<% end %>
+</table>
+</div>
+</fieldset>
+
+
+<%= form_tag :controller => "tasks", :action => "add_category", :id => @task.id do %>
+<%= select "", "cat_id", @categories.map {|c| [c.name, c.id]}  %>
+<br />
+<%= submit_tag "add" %>
+<% end %>
