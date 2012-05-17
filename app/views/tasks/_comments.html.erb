@@ -1,10 +1,11 @@
 <%= render :partial => "comments/form" %>
+<% if @comments %>
 <table class="list_layout">
 	<caption><h1>Comments</h1></caption>
 <% @comments.each do |com| %>
 	<thead>
   		<tr>
-  			<th><%= com.author.name %> / <%= com.created_at.to_date %></th>
+  			<th><%= com.author.name %> / <%= com.created_at.to_time %></th>
   		</tr>
 	</thead>  		
 	<tbody>
@@ -16,4 +17,4 @@
 <% end %>
 
 </table>
-
+<% end %>
