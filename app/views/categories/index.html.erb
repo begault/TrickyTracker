@@ -1,6 +1,11 @@
+<%= render :partial => "application/admin_nav" %>
+
+<div class="admin_content">
+	
 <h1>Listing categories</h1>
 
-<table>
+<table class="list_layout">
+	<thead>
   <tr>
     <th>Name</th>
     <th>Desciption</th>
@@ -8,7 +13,7 @@
     <th></th>
     <th></th>
   </tr>
-
+</thead>
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
@@ -23,3 +28,5 @@
 <br />
 
 <%= link_to 'New Category', new_category_path %>
+
+</div>

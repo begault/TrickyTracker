@@ -67,15 +67,16 @@ class TasksController < ApplicationController
     @project = Project.find(@task.project_id)
     @priorities = Priority.all
     @stopovers = Stopover.all
+    @categories = @task.categories_not_parent()
+    @task_cats = @task.categories
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    puts params
     @task = Task.new(params[:task])
-    puts "\n current user: #{current_user}"
     @task.author = current_user
+    @categories = Category.all
 
     respond_to do |format|
       if @task.save
@@ -94,6 +95,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.closed = true
       @task.effective_achievement_date = Date.today
+      @task.stopover_id = Stopover.find(:first, :conditions => "name = 'Closed'").id
     end
 
     respond_to do |format|
@@ -155,4 +157,42 @@ class TasksController < ApplicationController
     end
   end    
   
+  def add_category
+    @task = Task.find(:first, :conditions => "id = #{params[:id]}")
+    @task_cat = CategoriesTask.new(:task_id => @task.id, :category_id => params['cat_id'])
+    @team_members = Person.task_assignees(@task.id)
+    @users = Person.not_assignees(@task.id)
+    @comments = Comment.find_by_type(@task)
+    @comment = Comment.new
+    @categories = @task.categories_not_parent()
+    
+    
+    respond_to do |format| 
+      if @task_cat.save
+        format.html { redirect_to(:controller => "tasks", :action => "edit", :id => @task.id) }
+        format.js
+        format.xml  { render :xml => @category_task, :status => :created, :location => @category_task }
+      else
+        format.html { render :action => "edit", :id => @task.id } 
+        format.xml { render :xml => @category_task.errors, :status => :unprocessable_entity }
+      end 
+    end  
+  end
+  
+  def remove_task_category
+    @task = Task.find(:first, :conditions => "id = #{params[:id]}")
+    @task_cat = CategoriesTask.find(:first, :conditions => ["task_id = #{@task.id} and category_id = #{params[:category_id]}"])
+    @task_cat.destroy
+    @team_members = Person.task_assignees(@task.id)
+    @users = Person.not_assignees(@task.id)
+    @comments = Comment.find_by_type(@task)
+    @comment = Comment.new
+    @categories = @task.categories_not_parent()
+      
+    respond_to do |format| 
+        format.html { redirect_to(:controller => "tasks", :action => "edit", :id => @task.id) }
+        format.js
+        format.xml  { render :xml => @category_task, :status => :created, :location => @category_task }
+    end
+  end 
 end
