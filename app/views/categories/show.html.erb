@@ -10,6 +10,10 @@
   <b>Name:</b>
   <%= @category.name %>
 </p>
+<p>
+	<b>Project:</b>
+	<%= @category.project.name unless @category.project.nil? %> 
+</p>
 
 <p>
   <b>Desciption:</b>

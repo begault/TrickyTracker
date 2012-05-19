@@ -25,6 +25,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new.json
   def new
     @category = Category.new
+    @projects = Project.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +35,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    @projects = Project.all
     @category = Category.find(params[:id])
   end
 
@@ -41,7 +43,8 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(params[:category])
-
+    @projects = Project.all
+    
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }

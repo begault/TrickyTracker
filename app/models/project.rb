@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
+  has_many :categories, :dependent => :destroy   
+  has_many :categories_projects, :dependent => :destroy
   belongs_to :project_manager, 
     :foreign_key => "manager", 
     :class_name  => "Person"

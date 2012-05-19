@@ -9,6 +9,7 @@
   <tr>
     <th>Name</th>
     <th>Desciption</th>
+    <th>Project</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,6 +19,7 @@
   <tr>
     <td><%= category.name %></td>
     <td><%= category.desciption %></td>
+    <td><%= category.project.name unless category.project.nil? %> </td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
